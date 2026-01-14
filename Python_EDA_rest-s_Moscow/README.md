@@ -85,3 +85,19 @@
 - По результатам проведённого ИАД формулировка итогового вывода и рекомендации для заказчика.
 </font>
 ___
+
+## Используемый стек
+- **Python** (Pandas, Matplotlib, Seaborn, phik_matrix)
+- **Jupyter Notebook**
+- **EDA**
+
+## Статус проекта
+✅ Завершен
+
+---
+
+## Инструкция по запуску
+Jupiter Notebook 7 версии и выше
+Импорт библиотек Pandas, Matplotlib.pyplot, Seaborn, from phik import phik_matrix
+
+---
