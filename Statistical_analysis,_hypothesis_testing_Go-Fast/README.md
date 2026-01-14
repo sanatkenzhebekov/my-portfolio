@@ -79,7 +79,7 @@
 
 ## Инструкция по запуску
 Jupiter Notebook 7 версии и выше
-Импорт библиотек Pandas, Matplotlib.pyplot, Seaborn, from phik import phik_matrix
+Импорт библиотек Pandas, Matplotlib.pyplot, Scipy.stats.
 
 ---
 
