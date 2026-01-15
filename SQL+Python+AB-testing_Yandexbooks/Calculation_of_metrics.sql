@@ -164,3 +164,33 @@ ORDER BY month;
 -- | 2024-09-01 | 16 320 | 105 539 | 61.70 |
 -- | 2024-10-01 | 18 280 | 137 384 | 53.09 |
 -- | 2024-11-01 | 18 594 | 145 351 | 51.04 |
+
+
+-- Подготовка данных для проверки гипотезы
+WITH src AS (
+SELECT
+a.puid,
+COALESCE(a.hours, 0)::numeric AS hours,
+g.usage_geo_id_name AS city,
+CAST(a.msk_business_dt_str AS date) AS dt
+FROM bookmate.audition a
+LEFT JOIN bookmate.geo g ON a.usage_geo_id = g.usage_geo_id
+)
+SELECT
+city,
+puid,
+SUM(hours)::numeric AS hours
+FROM src
+WHERE city IS NOT NULL
+AND city IN ('Москва', 'Санкт-Петербург', 'Moscow', 'Saint Petersburg')
+GROUP BY city, puid
+ORDER BY city, hours DESC;
+
+-- Пример данных первые 5 строк
+-- | city | puid | hours |
+-- |------|------|-------|
+-- | Москва | 6829aafc-f9d6-11ef-be00-c2c9fa6fd3d5 | 248.353 |
+-- | Москва | 682b0848-f9d6-11ef-be00-c2c9fa6fd3d5 | 182.309 |
+-- | Москва | 682a1b68-f9d6-11ef-be00-c2c9fa6fd3d5 | 174.573 |
+-- | Москва | 682c1d28-f9d6-11ef-be00-c2c9fa6fd3d5 | 148.853 |
+-- | Москва | 682bda2a-f9d6-11ef-be00-c2c9fa6fd3d5 | 144.343 |
