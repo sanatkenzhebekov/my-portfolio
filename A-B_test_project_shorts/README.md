@@ -63,9 +63,10 @@
 - `test_group` — тестовая группа (в таблице с историческими данными этого столбца нет).
 
 ## Используемый стек
-- **Python** (Pandas, Matplotlib, Seaborn, phik_matrix)
+- **Python** (Pandas, Matplotlib, proportions_ztest, ttest_ind, proportion_effectsize, NormalIndPower, ceil)
 - **Jupyter Notebook**
 - **EDA**
+- **A/B-testing**
 
 ## Статус проекта
 ✅ Завершен
@@ -74,7 +75,7 @@
 
 ## Инструкция по запуску
 Jupiter Notebook 7 версии и выше
-Импорт библиотек Pandas, Matplotlib.pyplot, Seaborn, from phik import phik_matrix
+Импорт библиотек Pandas, Matplotlib.pyplot, Scipy, Statmodels, from math import ceil
 
 ---
 
