@@ -78,14 +78,14 @@
 ## Инструкция по запуску
 Jupiter Notebook 7 версии и выше
 **Импорт библиотек** 
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy import stats as st
-from scipy.stats import ttest_ind
-from scipy.stats import mannwhitneyu
-import matplotlib.pyplot as plt
-from statsmodels.stats.proportion import proportions_ztest
+- import pandas as pd
+- import matplotlib.pyplot as plt
+- import numpy as np
+- from scipy import stats as st
+- from scipy.stats import ttest_ind
+- from scipy.stats import mannwhitneyu
+- import matplotlib.pyplot as plt
+- from statsmodels.stats.proportion import proportions_ztest
 
 ---
 
