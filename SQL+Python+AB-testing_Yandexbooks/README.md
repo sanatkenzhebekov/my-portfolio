@@ -67,7 +67,7 @@
 ## Используемый стек
 - **Python** (Pandas, Matplotlib, Numpy, Scipy, proportions_ztest, ttest_ind, proportion_effectsize, NormalIndPower, ceil)
 - **Jupyter Notebook**
-- **EDA**
+- **Hypothesis-testing**
 - **A/B-testing**
 
 ## Статус проекта
