@@ -358,4 +358,35 @@ HAVING COUNT(DISTINCT service_name) > 1;
 
 --Таблица результата последнего запроса пуста, неявных дубликатов в названиях операторов не найдено.
 
+--Вычисление ключевых метрик продукта
+-- Настройка параметра synchronize_seqscans важна для проверки
+WITH set_config_precode AS (
+  SELECT set_config('synchronize_seqscans', 'off', true)
+)
+
+SELECT
+    r.region_name,
+    SUM(p.revenue) as total_revenue,
+    COUNT(*) as total_orders,
+    COUNT(DISTINCT p.user_id) as total_users,
+    SUM(p.tickets_count) as total_tickets,
+    (SUM(p.revenue) / SUM(p.tickets_count)) as one_ticket_cost
+FROM afisha.purchases p
+JOIN afisha.events e ON p.event_id = e.event_id
+JOIN afisha.city c ON e.city_id = c.city_id
+JOIN afisha.regions r ON c.region_id = r.region_id
+WHERE p.currency_code = 'rub'
+GROUP BY r.region_name
+ORDER BY total_revenue DESC
+LIMIT 7;
+
+-- | Регион | Общая выручка | Всего заказов | Всего пользователей | Всего билетов | Стоимость одного билета |
+-- |--------|---------------|---------------|---------------------|---------------|-------------------------|
+-- | Каменевский регион | 61 555 600 | 91 634 | 10 646 | 253 393 | 242.93 |
+-- | Североярская область | 25 453 300 | 44 282 | 6 735 | 125 204 | 203.29 |
+-- | Озернинский край | 9 793 620 | 10 502 | 2 488 | 29 621 | 330.63 |
+-- | Широковская область | 9 543 780 | 16 538 | 3 278 | 46 977 | 203.16 |
+-- | Малиновоярский округ | 5 955 930 | 6 634 | 1 902 | 17 465 | 341.02 |
+-- | Яблоневская область | 3 692 400 | 6 197 | 1 431 | 16 589 | 222.58 |
+-- | Светополянский округ | 3 425 870 | 7 632 | 1 683 | 20 434 | 167.66 |
 
